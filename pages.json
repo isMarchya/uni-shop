@@ -24,10 +24,11 @@
 			}
 		}
 	],
+
 	"subPackages": [{
 		"root": "subpkg",
 		"pages": [{
-				"path": "good_detail/good_detail",
+				"path": "search/search",
 				"style": {
 					"navigationBarTitleText": "京西"
 				}
@@ -35,7 +36,17 @@
 			{
 				"path": "goods_list/goods_list",
 				"style": {
-					"navigationBarTitleText": "京西"
+					"navigationBarTitleText": "京西",
+					"onReachBottomDistance": 150,
+					"enablePullDownRefresh": true,
+					"backgroundColor": "#f8f8f8"
+				}
+			},
+			{
+				"path" : "goods_detail/goods_detail",
+				"style" : 
+				{
+					"navigationBarTitleText" : "京西"
 				}
 			}
 		]
