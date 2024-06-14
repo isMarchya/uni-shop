@@ -1,32 +1,44 @@
 {
-	"pages": [
-	{
-		"path" : "pages/home/home",
-		"style" : 
+	"pages": [{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "京西"
+			}
+		},
 		{
-			"navigationBarTitleText" : "京西"
-		}
-	},
-	{
-		"path" : "pages/cate/cate",
-		"style" : 
+			"path": "pages/cate/cate",
+			"style": {
+				"navigationBarTitleText": "京西"
+			}
+		},
 		{
-			"navigationBarTitleText" : "分类"
-		}
-	},
-	{
-		"path" : "pages/cart/cart",
-		"style" : 
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "京西"
+			}
+		},
 		{
-			"navigationBarTitleText" : "购物车"
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "京西"
+			}
 		}
-	},
-	{
-		"path" : "pages/my/my",
-		"style" : 
-		{
-			"navigationBarTitleText" : "我的"
-		}
+	],
+	"subPackages": [{
+		"root": "subpkg",
+		"pages": [{
+				"path": "good_detail/good_detail",
+				"style": {
+					"navigationBarTitleText": "京西"
+				}
+			},
+			{
+				"path": "goods_list/goods_list",
+				"style": {
+					"navigationBarTitleText": "京西"
+				}
+			}
+		]
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
@@ -39,8 +51,7 @@
 	},
 	"tabBar": {
 		"selectedColor": "#C00000",
-		"list": [
-			{
+		"list": [{
 				"pagePath": "pages/home/home",
 				"text": "首页",
 				"iconPath": "static/home.png",
