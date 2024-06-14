@@ -37,6 +37,13 @@
 				"style": {
 					"navigationBarTitleText": "京西"
 				}
+			},
+			{
+				"path" : "search/search",
+				"style" : 
+				{
+					"navigationBarTitleText" : ""
+				}
 			}
 		]
 	}],
