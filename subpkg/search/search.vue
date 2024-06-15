@@ -65,7 +65,7 @@
 			},
 			gotoSearchGood(item) {
 				uni.navigateTo({
-					url: '/subpkg/good_detail/good_detail?goods_id=' + item.goods_id
+					url: '/subpkg/goods_detail/goods_detail?goods_id=' + item.goods_id
 				})
 			},
 			addHistoryList() {

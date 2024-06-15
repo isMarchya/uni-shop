@@ -54,7 +54,6 @@
 				this.isLoading = false
 				
 				cb && cb()
-				console.log(res.message)
 				this.total = res.message.total
 				this.goodsList = [...this.goodsList, ...res.message.goods]
 			},
