@@ -22,17 +22,23 @@
 		</view>
 
 		<rich-text :nodes="goodsInfo.goods_introduce"></rich-text>
-		
+
 		<view class="goods-nav">
-			<uni-goods-nav :fill="true" :options="options" :button-group="buttonGroup" @click="clickIcon" @buttonClick="clickButton"></uni-goods-nav>
+			<uni-goods-nav :fill="true" :options="options" :button-group="buttonGroup" @click="clickIcon"
+				@buttonClick="clickButton"></uni-goods-nav>
 		</view>
 	</view>
 </template>
 
 <script>
+	import {
+		useCartStore
+	} from '@/stores/cart.js'
+
 	export default {
 		data() {
 			return {
+				cartStore: useCartStore(),
 				goodsInfo: {},
 				options: [{
 						icon: 'shop',
@@ -40,7 +46,8 @@
 					},
 					{
 						icon: 'cart',
-						text: '购物车'
+						text: '购物车',
+						info: 0
 					}
 				],
 				buttonGroup: [{
@@ -59,6 +66,20 @@
 		onLoad(options) {
 			const goodsID = options.goods_id
 			this.getGoodsInfo(goodsID)
+		},
+		computed: {
+			cartTotal() {
+				return this.cartStore.getTotal()
+			}
+		},
+		watch: {
+			cartTotal: {
+				handler(newVal) {
+					const res = this.options.find((x) => x.text == '购物车')
+					if (res) res.info = newVal
+				},
+				immediate: true
+			}
 		},
 		methods: {
 			async getGoodsInfo(goodsID) {
@@ -80,11 +101,25 @@
 				})
 			},
 			clickIcon(e) {
-				console.log(e)
 				if (e.content.text == '购物车') {
 					return uni.switchTab({
 						url: '/pages/cart/cart'
 					})
+				}
+			},
+			clickButton(e) {
+				if (e.content.text == '加入购物车') {
+
+					const goods = {
+						goods_id: this.goodsInfo.goods_id,
+						goods_name: this.goodsInfo.goods_name,
+						goods_price: this.goodsInfo.goods_price,
+						goods_count: 1,
+						goods_small_logo: this.goodsInfo.goods_small_logo,
+						goods_state: true
+					}
+
+					this.cartStore.addToCart(goods)
 				}
 			}
 		}
@@ -138,7 +173,7 @@
 			margin: 10px 0;
 		}
 	}
-	
+
 	.goods-nav {
 		position: fixed;
 		bottom: 0;
@@ -146,7 +181,7 @@
 		width: 100%;
 		z-index: 999;
 	}
-	
+
 	.goods-detail-container {
 		padding-bottom: 50px;
 	}
