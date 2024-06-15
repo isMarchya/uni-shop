@@ -16,6 +16,7 @@ app.$mount()
 import {
 	createSSRApp
 } from 'vue'
+import * as Pinia from 'pinia';
 import App from './App.vue'
 
 import {
@@ -23,7 +24,6 @@ import {
 } from '@escook/request-miniprogram'
 uni.$http = $http
 $http.baseUrl = 'http://www.uinav.com'
-
 $http.beforeRequest = function(options) {
 	uni.showLoading({
 		title: '数据加载中...'
@@ -43,8 +43,10 @@ uni.$showMsg = function(title = "数据请求失败！", duration = 1500) {
 
 export function createApp() {
 	const app = createSSRApp(App)
+	app.use(Pinia.createPinia());
 	return {
-		app
+		app,
+		Pinia,
 	}
 }
 // #endif
