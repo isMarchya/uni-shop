@@ -41,9 +41,8 @@
 </template>
 
 <script>
-	import {
-		$http
-	} from '@escook/request-miniprogram'
+	import badgeMix from '@/mixins/tabbar_badge.js'
+	
 	export default {
 		data() {
 			return {
@@ -52,6 +51,7 @@
 				floorList: []
 			}
 		},
+		mixins: [badgeMix],
 		onLoad() {
 			this.getSwiperList()
 			this.getNavList()
