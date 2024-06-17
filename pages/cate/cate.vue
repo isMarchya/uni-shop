@@ -133,7 +133,6 @@
 			image {
 				width: 60px;
 				height: 60px;
-				border: 1px solid lightpink;
 			}
 
 			text {

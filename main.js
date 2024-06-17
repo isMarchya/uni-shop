@@ -18,16 +18,25 @@ import {
 } from 'vue'
 import * as Pinia from 'pinia';
 import App from './App.vue'
+import {
+	useUserStore
+} from '@/stores/user.js'
 
 import {
 	$http
 } from '@escook/request-miniprogram'
 uni.$http = $http
-$http.baseUrl = 'http://www.uinav.com'
+$http.baseUrl = 'https://api-hmugo-web.itheima.net'
 $http.beforeRequest = function(options) {
 	uni.showLoading({
 		title: '数据加载中...'
 	})
+
+	if (options.url.indexOf('/my/') != -1) {
+		options.header = {
+			Authorization: useUserStore().token
+		}
+	}
 }
 $http.afterRequest = function() {
 	uni.hideLoading()
